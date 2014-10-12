@@ -79,7 +79,7 @@ function PantallaMgr() {
         customizePotenciaGeneral: { fn: this.customizePotenciaGeneral, doBroadCasting: false, promise: false},
         getLightValues          : { fn: this.getLightValues, doBroadCasting: false, promise: false},
         getSettings             : { fn: this.getSettings, doBroadCasting: false, promise: false},
-        getTemperatura          : { fn: this.getTemperatura, doBroadCasting: true, promise: false},
+        getTemperatura          : { fn: this.getTemperatura, doBroadCasting: false, promise: false},
         setConfig               : { fn: this.setConfig, doBroadCasting: false, promise: false}
     };
 };
