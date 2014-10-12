@@ -75,8 +75,8 @@ function PantallaMgr() {
     //contains the functions allowed and if they will do a broadcasting. All the functions declared in fn property
     //will be promises
     this.messages = {
-        customizeLight          : { fn: this.customizeLight, doBroadCasting: true, promise: false},
-        customizePotenciaGeneral: { fn: this.customizePotenciaGeneral, doBroadCasting: true, promise: false},
+        customizeLight          : { fn: this.customizeLight, doBroadCasting: false, promise: false},
+        customizePotenciaGeneral: { fn: this.customizePotenciaGeneral, doBroadCasting: false, promise: false},
         getLightValues          : { fn: this.getLightValues, doBroadCasting: false, promise: false},
         getSettings             : { fn: this.getSettings, doBroadCasting: false, promise: false},
         getTemperatura          : { fn: this.getTemperatura, doBroadCasting: true, promise: false},
