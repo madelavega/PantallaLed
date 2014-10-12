@@ -1,0 +1,20 @@
+{
+    "name"        : "pantallaLed",
+    "version"     : "0.0.1",
+    "dependencies": {
+        "socket.io"   : ">= 0.9.16",
+        "q"           : ">= 0.9.7",
+        "express"     : "3.4.0",
+        "jhonny-five" : "latest",
+        "moment"      : "latest",
+        "moment-range": "~1"
+    },
+
+    "repository": {
+        "type": "git",
+        "url" : "https://github.com/madelavega/pantallaLed.git"
+    },
+    "engines"   : {
+        "node": ">= 0.10.32"
+    }
+}

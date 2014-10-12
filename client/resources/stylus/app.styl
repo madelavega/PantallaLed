@@ -1,0 +1,129 @@
+slider {
+  display: block;
+  position: relative;
+  height: 20px;
+  width: 96%;
+  top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+
+slider span.bar {
+  height: 100%;
+  z-index: 0;
+  background: #eee;
+  border-radius: 20px;
+  border: 2px solid;
+  left: 0;
+  top: 25%;
+  cursor: pointer;
+
+  &.steps {
+    border: none;
+  }
+}
+
+slider.general span.bar {
+  background: black;
+  span.pointer {
+    background-color: white;
+  }
+}
+
+slider.moonLight span.bar {
+  background: blue;
+}
+
+slider.redLight span.bar {
+  background: red;
+}
+
+slider.dayLight span.bar {
+  background: yellow;
+}
+
+slider.highLight span.bar {
+  background: white;
+}
+
+slider span.bar.selection, slider span.bar.unselected {
+}
+
+slider span.bar.selection {
+  background: #0a0;
+  opacity: 0.5;
+}
+
+slider span.bar.unselected {
+  width: auto;
+  background: #a00;
+  opacity: 0.5;
+}
+
+slider span.pointer {
+  cursor: pointer;
+  width: 40px;
+  top: -5px;
+  background-color: #b8c0c3;
+  border-radius: 20px;
+  height: 40px;
+  border: 3px solid #000;
+}
+
+slider span.pointer:hover {
+}
+
+slider span.pointer.active {
+}
+
+slider span.bubble {
+  font-size: 0.7em;
+  line-height: 1.4em;
+  font-family: sans-serif;
+  text-align: center;
+  text-shadow: none;
+  top: -1.3em;
+  cursor: pointer;
+}
+
+slider.individual span.bubble, slider.general span.bubble  {
+  display: none !important;
+}
+
+slider span.bubble.selection, slider span.bubble.limit {
+  top: 25%;
+  display: none !important;
+}
+
+slider span.bubble.selection {
+}
+
+slider span.bubble.limit {
+}
+
+slider span.bubble.low, slider span.bubble.high {
+}
+
+::-ms-tooltip {
+  display: none;
+}
+
+#slider-container {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.panel-body {
+  .temperatura {
+    height: 100%;
+    padding-top: 53px;
+    margin: 0 auto;
+    font-size: 60px;
+    text-align: center;
+  }
+}

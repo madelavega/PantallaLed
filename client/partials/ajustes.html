@@ -1,0 +1,97 @@
+<div class="scrollable ng-scope">
+    <div class="scrollable-content ng-scope container-fluid section">
+        <form action="">
+            <div class="panel" bs-panel="">
+                <div class="panel-heading">
+                    <h2 class="panel-title">
+                        Actividad
+                    </h2>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <div class="form-group row">
+                            <label class="control-label col-xs-3 col-sm-2 col-lg-1">Inicio</label>
+
+                            <div class="form-control-wrapper col-xs-9 col-sm-10 col-lg-11">
+                                <input type="time" label="Hora inicio"
+                                       label-class="col-xs-3 col-sm-2 col-lg-1"
+                                       class="needsclick form-control"
+                                       ng-model="settings.startTime"
+                                       placeholder="HH:mm"
+                                >
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-xs-3 col-sm-2 col-lg-1">Fin</label>
+
+                            <div class="form-control-wrapper col-xs-9 col-sm-10 col-lg-11">
+                                <input type="time" label="Hora Fin"
+                                       label-class="col-xs-3 col-sm-2 col-lg-1"
+                                       class="needsclick form-control"
+                                       ng-model="settings.finishTime"
+                                       placeholder="HH:mm"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-heading">
+                    <h2 class="panel-title">
+                        Intervalos
+                    </h2>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <div class="form-group row">
+                            <div class="form-group">
+                                <label class="control-label">Amanecer</label>
+                                <input type="number" pattern="\d*" class="form-control needsclick" ng-model="settings.dawnDuration">
+                                <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="form-group">
+                                <label class="control-label">Anochecer</label>
+                                <input type="number" pattern="\d*" class="form-control needsclick" ng-model="settings.sunsetDuration">
+                                <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="form-group">
+                                <label class="control-label">Luz de luna</label>
+                                <input type="number" pattern="\d*" class="form-control needsclick" ng-model="settings.moonLightTime">
+                                <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="form-group">
+                                <label class="control-label">Medida</label>
+                                <select class="form-control needsclick">
+                                    <option>Horas</option>
+                                    <option>Minutos</option>
+                                    <option>Segundos</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions panel" bs-panel="">
+                <div class="panel-body">
+                    <div>
+                        <div content-for="navbarAction" duplicate="">
+                            <button class="btn btn-primary"  ng-click="save()">
+                                Guardar
+                            </button>
+
+                            <button class="btn btn-primary" ng-click="reset()">
+                                Resetear
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

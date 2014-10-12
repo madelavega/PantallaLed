@@ -1,0 +1,38 @@
+<div class="scrollable ng-scope">
+    <div class="scrollable-content ng-scope container-fluid section">
+        <div class="panel-heading">
+            <h2 class="panel-title">
+                General
+            </h2>
+        </div>
+        <div class="panel-body">
+            <div id="slider-container">
+                <slider
+                        class="general"
+                        floor="{{ floor + 1}}"
+                        ceiling="{{ ceiling }}"
+                        ng-model="potencia"
+                        ng-change="changePotenciaGeneral()"
+                        >
+                </slider>
+            </div>
+        </div>
+        <div class="panel-heading">
+            <h2 class="panel-title">
+                Individual
+            </h2>
+        </div>
+        <div class="panel-body">
+            <div id="slider-container">
+                <slider
+                        class="{{ light.type }} individual"
+                        floor="{{ floor }}"
+                        ceiling="{{ ceiling }}"
+                        ng-model="light.value"
+                        ng-change="change(light.type, light.value)"
+                        ng-repeat="light in lights">
+                </slider>
+            </div>
+        </div>
+    </div>
+</div>
