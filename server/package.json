@@ -6,6 +6,7 @@
         "q"           : ">= 0.9.7",
         "express"     : "3.4.0",
         "johnny-five" : "latest",
+        "serialport"  : "latest",
         "moment"      : "latest",
         "moment-range": "~1"
     },

@@ -1,5 +1,6 @@
 var util = require('util'),
-    EventEmitter = require('events').EventEmitter;
+    EventEmitter = require('events').EventEmitter,
+    sp = require("serialport");
 
 function PantallaLed() {
     var environment, initialize, turnOff, startDay, checkControl,
@@ -9,7 +10,16 @@ function PantallaLed() {
         readTemperature, isStarting = false, isEnding = false,
         j5 = require("johnny-five"),
         moment = require('moment-range'),
-        board = new j5.Board();
+        port, board;
+
+    port = new sp.SerialPort("/dev/ttyACM0", {
+        baudrate: 57600, // No other boud rate works
+        buffersize: 128 // Firmata uses 1
+    });
+
+    board = new j5.Board({
+        port: port
+    });
 
     environment = {
         moonLight: null,
