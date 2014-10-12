@@ -5,7 +5,7 @@
         "socket.io"   : ">= 0.9.16",
         "q"           : ">= 0.9.7",
         "express"     : "3.4.0",
-        "jhonny-five" : "latest",
+        "johnny-five" : "latest",
         "moment"      : "latest",
         "moment-range": "~1"
     },
