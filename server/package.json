@@ -8,6 +8,7 @@
         "johnny-five" : "latest",
         "serialport"  : "latest",
         "moment"      : "latest",
+        "ping-wrapper": "latest",
         "moment-range": "~1"
     },
 
