@@ -184,7 +184,6 @@ function PantallaLed() {
         return function (percent) {
             var value = parseInt(percent * environment.maxPinValue / 100);
             environment[lightType].stop();
-            console.log("brightness for", lightType, ":", value);
             environment[lightType].brightness(value);
         }
     }

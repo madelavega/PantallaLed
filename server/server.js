@@ -26,10 +26,8 @@ Controller.getManagers().pantalla.on("temperatura", function (value) {
 
 io.sockets.on('connection', function (socket) {
     "use strict";
-    console.log("connection open....");
 
     socket.on('message', function (message) {
-        console.log("Message received...");
         var data, type, mgrFunction, manager;
 
         data = JSON.parse(message);
@@ -41,10 +39,8 @@ io.sockets.on('connection', function (socket) {
         mgrFunction = manager.handleMessage(type);
         mgrFunction(data.data).then(function (result) {
             if (result.doBroadCasting) {
-                console.log("broadcasting...", result.data);
                 socket.broadcast.send(JSON.stringify(result.data));
             } else {
-                console.log("sending data", result.data);
                 socket.send(JSON.stringify(result.data));
             }
         });
