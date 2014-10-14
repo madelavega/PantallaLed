@@ -42,7 +42,7 @@ io.sockets.on('connection', function (socket) {
         mgrFunction(data.data).then(function (result) {
             if (result.doBroadCasting) {
                 console.log("broadcasting...", result.data);
-                io.sockets.send(JSON.stringify(result.data));
+                socket.broadcast.send(JSON.stringify(result.data));
             } else {
                 console.log("sending data", result.data);
                 socket.send(JSON.stringify(result.data));

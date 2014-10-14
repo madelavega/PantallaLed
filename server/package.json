@@ -2,8 +2,8 @@
     "name"        : "pantallaLed",
     "version"     : "0.0.1",
     "dependencies": {
-        "socket.io"   : ">= 0.9.16",
-        "q"           : ">= 0.9.7",
+        "socket.io"   : "latest",
+        "q"           : "latest",
         "express"     : "3.4.0",
         "johnny-five" : "latest",
         "serialport"  : "latest",

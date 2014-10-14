@@ -52,7 +52,8 @@ function PantallaMgr() {
     };
 
     this.setConfig = function (values) {
-        var prop, config = pantallaLedConfig.config;
+        var prop, config = pantallaLedConfig.config,
+            d = Q.defer();
         for(prop in values) {
             if(values.hasOwnProperty(prop)) {
                 config[prop] = values[prop];
@@ -65,11 +66,12 @@ function PantallaMgr() {
                 console.log(err);
             } else {
                 pantallaLed.setSettings(pantallaLedConfig.config);
+                d.resolve({settings: pantallaLed.getSettings()});
             }
         });
 
 
-        return {settings: pantallaLed.getSettings()}
+        return d.promise;
     };
 
     //contains the functions allowed and if they will do a broadcasting. All the functions declared in fn property
@@ -80,7 +82,7 @@ function PantallaMgr() {
         getLightValues          : { fn: this.getLightValues, doBroadCasting: false, promise: false},
         getSettings             : { fn: this.getSettings, doBroadCasting: false, promise: false},
         getTemperatura          : { fn: this.getTemperatura, doBroadCasting: false, promise: false},
-        setConfig               : { fn: this.setConfig, doBroadCasting: false, promise: false}
+        setConfig               : { fn: this.setConfig, doBroadCasting: true, promise: true}
     };
 };
 
