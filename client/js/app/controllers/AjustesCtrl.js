@@ -22,12 +22,10 @@ angular.module("app")
         $scope.save = function () {
             connector.sendMessage("pantalla/setConfig", $scope.settings);
             $scope.cssClasses.isSaved = "saved";
-            $scope.$apply();
         };
 
         $scope.onChange = function () {
             $scope.cssClasses.isSaved = "unsaved";
-            $scope.$apply();
         };
 
         if (connector.isReady()) {
