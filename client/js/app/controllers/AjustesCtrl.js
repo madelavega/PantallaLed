@@ -20,8 +20,13 @@ angular.module("app")
 
         $scope.save = function () {
             connector.sendMessage("pantalla/setConfig", $scope.settings);
-            $scope.savedCls = SAVED_CLASS;
-            $scope.savedCls = "";
+            $scope.savedCls = "saved";
+            $scope.apply();
+        };
+
+        $scope.onChange = function () {
+            $scope.savedCls = "unsaved";
+            $scope.apply();
         };
 
         if (connector.isReady()) {

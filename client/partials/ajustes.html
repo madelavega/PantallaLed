@@ -18,6 +18,7 @@
                                        class="needsclick form-control"
                                        ng-model="settings.startTime"
                                        placeholder="HH:mm"
+                                       ng-change="onChange()"
                                 >
                             </div>
                         </div>
@@ -30,6 +31,7 @@
                                        class="needsclick form-control"
                                        ng-model="settings.finishTime"
                                        placeholder="HH:mm"
+                                       ng-change="onChange()"
                                 >
                             </div>
                         </div>
@@ -45,28 +47,28 @@
                         <div class="form-group row">
                             <div class="form-group">
                                 <label class="control-label">Amanecer</label>
-                                <input type="number" pattern="\d*" class="form-control needsclick" ng-model="settings.dawnDuration">
+                                <input type="number" pattern="\d*" ng-change="onChange()" class="form-control needsclick" ng-model="settings.dawnDuration">
                                 <span class="glyphicon glyphicon-ok form-control-feedback"></span>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group">
                                 <label class="control-label">Anochecer</label>
-                                <input type="number" pattern="\d*" class="form-control needsclick" ng-model="settings.sunsetDuration">
+                                <input type="number" pattern="\d*" ng-change="onChange()" class="form-control needsclick" ng-model="settings.sunsetDuration">
                                 <span class="glyphicon glyphicon-ok form-control-feedback"></span>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group">
                                 <label class="control-label">Luz de luna</label>
-                                <input type="number" pattern="\d*" class="form-control needsclick" ng-model="settings.moonLightTime">
+                                <input type="number" pattern="\d*" ng-change="onChange()" class="form-control needsclick" ng-model="settings.moonLightTime">
                                 <span class="glyphicon glyphicon-ok form-control-feedback"></span>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group">
                                 <label class="control-label">Medida</label>
-                                <select class="form-control needsclick">
+                                <select ng-change="onChange()" class="form-control needsclick">
                                     <option>Horas</option>
                                     <option>Minutos</option>
                                     <option>Segundos</option>
@@ -84,7 +86,6 @@
                             <button class="btn btn-primary"  ng-click="save()">
                                 Guardar
                             </button>
-
                             <button class="btn btn-primary" ng-click="reset()">
                                 Resetear
                             </button>
