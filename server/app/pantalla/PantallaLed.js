@@ -76,7 +76,7 @@ function PantallaLed() {
     };
 
     checkControl = function () {
-        var start, end, now, range;
+        var start, end, range;
 
         start = moment($AC.config.startTime, $AC.dateFormat);
         end = moment($AC.config.finishTime, $AC.dateFormat);
@@ -106,8 +106,7 @@ function PantallaLed() {
                     }
                 } else {
                     if (!isStarting && !isEnding && !isCustomized) {
-                        now = moment(new Date());
-                        if (range.contains(now)) {
+                        if (range.contains(new Date())) {
                             console.log("Time between start", $AC.config.startTime, "and end", $AC.config.finishTime);
                             ["dayLight", "moonLight", "highLight", "redLight"].forEach(function (type) {
                                 if (!environment[type].value) {
