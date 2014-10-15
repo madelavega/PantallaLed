@@ -6,7 +6,6 @@ var express = require("express"),
     path = require("path"),
     Controller,
     events = require("events"),
-    Ping = require("ping-wrapper")
     serverConfig = require("./config.json");
 
 server.listen(serverConfig.port);
@@ -24,12 +23,6 @@ Controller = require("./app/Controller").Controller;
 Controller.getManagers().pantalla.on("temperatura", function (value) {
     io.sockets.send(JSON.stringify({"temperatura": value}));
 });
-
-//hearbeat for raspberry pi wifi
-Ping.configure();
-setInterval(function () {
-    var ping = new Ping("192.168.1.1");
-}, 120000);
 
 io.sockets.on("connection", function (socket) {
     "use strict";
