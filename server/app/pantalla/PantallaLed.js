@@ -78,11 +78,10 @@ function PantallaLed() {
     checkControl = function () {
         var start, end, range;
 
-        start = moment($AC.config.startTime, $AC.dateFormat);
-        end = moment($AC.config.finishTime, $AC.dateFormat);
-        range = moment().range(start, end);
-
         setInterval(function () {
+            start = moment($AC.config.startTime, $AC.dateFormat);
+            end = moment($AC.config.finishTime, $AC.dateFormat);
+            range = moment().range(start, end);
             if ((new moment()).format($AC.dateFormat).match($AC.config.startTime)) {
                 isCustomized = false;
                 if (!isStarting) {
