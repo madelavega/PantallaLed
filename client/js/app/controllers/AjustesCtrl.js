@@ -3,6 +3,10 @@ angular.module("app")
     .controller("AjustesCtrl", ["$scope", "socketioconnector", function ($scope, connector) {
         "use strict";
 
+        var SAVED_CLASS= "saved";
+
+        $scope.savedCls = "";
+
         $scope.settings = {startTime: "",
             finishTime              : "",
             dawnDuration            : 0,
@@ -16,6 +20,8 @@ angular.module("app")
 
         $scope.save = function () {
             connector.sendMessage("pantalla/setConfig", $scope.settings);
+            $scope.savedCls = SAVED_CLASS;
+            $scope.savedCls = "";
         };
 
         if (connector.isReady()) {

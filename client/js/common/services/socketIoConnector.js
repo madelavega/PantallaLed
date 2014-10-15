@@ -27,12 +27,11 @@ connector
             }
         };
 
-        connection.on('connect', function (socket) {
+        connection.on('connect', function () {
             console.log("WS connection OPEN...");
             isReady = true;
             fireEvent("connectionopen");
         });
-
 
         connection.on('message', function (message) {
             handleMessage(message);

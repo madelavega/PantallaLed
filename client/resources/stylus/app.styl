@@ -127,3 +127,23 @@ slider span.bubble.low, slider span.bubble.high {
     text-align: center;
   }
 }
+
+form {
+  &.saved {
+    input, select {
+      -webkit-animation: myfirst 3s;
+      animation: myfirst 3s;
+    }
+  }
+}
+
+@keyframes myfirst {
+  from {
+    color: white;
+    background: #6DC46F;
+  }
+  to {
+    color: #555;
+    background: white;
+  }
+}
