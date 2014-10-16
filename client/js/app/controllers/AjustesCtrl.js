@@ -4,41 +4,51 @@ angular.module("app")
         "use strict";
 
         $scope.cssClasses = {
-            isSaved : "unsaved"
+            isSaved: "unsaved"
         };
 
-        $scope.settings = {
-            startTime: "",
-            finishTime              : "",
-            dawnDuration            : 0,
-            sunsetDuration          : 0,
-            moonLightTime           : 0
-        };
+        $scope.defaults = {
+            timeMeasureTypes: [
+                { text: "Horas", value: "h"},
+                { text: "Minutos", value: "m"},
+                { text: "Segundos", value: "s"}
+            ]
+    };
 
-        $scope.reset = function () {
-            connector.sendMessage("pantalla/getSettings");
-        };
+$scope.settings = {
+    startTime         : "",
+    finishTime        : "",
+    dawnDuration      : 0,
+    sunsetDuration    : 0,
+    moonLightTime     : 0,
+    maxPinValuePercent: 0,
+    units             : "m"
+};
 
-        $scope.save = function () {
-            connector.sendMessage("pantalla/setConfig", $scope.settings);
-            $scope.cssClasses.isSaved = "saved";
-        };
+$scope.reset = function () {
+    connector.sendMessage("pantalla/getSettings");
+};
 
-        $scope.onChange = function () {
-            $scope.cssClasses.isSaved = "unsaved";
-        };
+$scope.save = function () {
+    connector.sendMessage("pantalla/setConfig", $scope.settings);
+    $scope.cssClasses.isSaved = "saved";
+};
 
-        if (connector.isReady()) {
-            connector.sendMessage("pantalla/getSettings");
-        } else {
-            connector.on("connectionopen", function () {
-                connector.sendMessage("pantalla/getSettings");
-            });
-        }
+$scope.onChange = function () {
+    $scope.cssClasses.isSaved = "unsaved";
+};
 
-        connector.on("settings", function (values) {
-            $scope.settings = values;
-            $scope.$apply();
-        });
-    }])
+if (connector.isReady()) {
+    connector.sendMessage("pantalla/getSettings");
+} else {
+    connector.on("connectionopen", function () {
+        connector.sendMessage("pantalla/getSettings");
+    });
+}
+
+connector.on("settings", function (values) {
+    $scope.settings = values;
+    $scope.$apply();
+});
+}])
 ;

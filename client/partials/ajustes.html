@@ -4,11 +4,19 @@
             <div class="panel" bs-panel="">
                 <div class="panel-heading">
                     <h2 class="panel-title">
-                        Actividad
+                        General
                     </h2>
                 </div>
                 <div class="panel-body">
                     <div>
+                        <div class="form-group row">
+                            <label class="control-label col-xs-3 col-sm-2 col-lg-1">Potencia (%)</label>
+
+                            <div class="form-control-wrapper col-xs-9 col-sm-10 col-lg-11">
+                                <input type="number" min="1" max="100" pattern="\d*" ng-change="onChange()"
+                                       class="form-control needsclick" ng-model="settings.maxPinValuePercent">
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label class="control-label col-xs-3 col-sm-2 col-lg-1">Inicio</label>
 
@@ -19,7 +27,7 @@
                                        ng-model="settings.startTime"
                                        placeholder="HH:mm"
                                        ng-change="onChange()"
-                                >
+                                        >
                             </div>
                         </div>
                         <div class="form-group row">
@@ -32,7 +40,7 @@
                                        ng-model="settings.finishTime"
                                        placeholder="HH:mm"
                                        ng-change="onChange()"
-                                >
+                                        >
                             </div>
                         </div>
                     </div>
@@ -45,33 +53,36 @@
                 <div class="panel-body">
                     <div>
                         <div class="form-group row">
-                            <div class="form-group">
-                                <label class="control-label">Amanecer</label>
-                                <input type="number" pattern="\d*" ng-change="onChange()" class="form-control needsclick" ng-model="settings.dawnDuration">
-                                <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <label class="control-label">Amanecer</label>
+
+                            <div class="form-control-wrapper col-xs-9 col-sm-10 col-lg-11">
+                                <input type="number" pattern="\d*" ng-change="onChange()"
+                                       class="form-control needsclick" ng-model="settings.dawnDuration">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="form-group">
-                                <label class="control-label">Anochecer</label>
-                                <input type="number" pattern="\d*" ng-change="onChange()" class="form-control needsclick" ng-model="settings.sunsetDuration">
-                                <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <label class="control-label">Anochecer</label>
+
+                            <div class="form-control-wrapper col-xs-9 col-sm-10 col-lg-11">
+                                <input type="number" pattern="\d*" ng-change="onChange()"
+                                       class="form-control needsclick" ng-model="settings.sunsetDuration">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="form-group">
-                                <label class="control-label">Luz de luna</label>
-                                <input type="number" pattern="\d*" ng-change="onChange()" class="form-control needsclick" ng-model="settings.moonLightTime">
-                                <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <label class="control-label">Luz de luna</label>
+
+                            <div class="form-control-wrapper col-xs-9 col-sm-10 col-lg-11">
+                                <input type="number" pattern="\d*" ng-change="onChange()"
+                                       class="form-control needsclick" ng-model="settings.moonLightTime">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="form-group">
-                                <label class="control-label">Medida</label>
-                                <select class="form-control needsclick">
-                                    <option>Horas</option>
-                                    <option>Minutos</option>
-                                    <option>Segundos</option>
+                            <label class="control-label">Medida</label>
+
+                            <div class="form-control-wrapper col-xs-9 col-sm-10 col-lg-11">
+                                <select ng-model="settings.units"
+                                        ng-options="measureTimeType.value as measureTimeType.text for measureTimeType in defaults.measureTimeTypes"
+                                        class="form-control needsclick">
                                 </select>
                             </div>
                         </div>
@@ -83,7 +94,7 @@
                 <div class="panel-body">
                     <div>
                         <div content-for="navbarAction" duplicate="">
-                            <button class="btn btn-primary"  ng-click="save()">
+                            <button class="btn btn-primary" ng-click="save()">
                                 Guardar
                             </button>
                             <button class="btn btn-primary" ng-click="reset()">
