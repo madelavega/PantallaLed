@@ -16,7 +16,7 @@ angular.module("app")
         connector.on("temperatura", function (value) {
             console.log("temperatura: " + value);
             value = (value + "").split(".");
-            $scope.temperatura = [value[0], ".", value[1].substring(0,2)].join("");
+            $scope.temperatura = value.length > 1 ? [value[0], ".", value[1].substring(0,2)].join("") : value[0];
             $scope.$apply();
         });
     }]);
