@@ -11,15 +11,14 @@
                     <div>
                         <div class="form-group row">
                             <label class="control-label col-xs-5 col-sm-3 col-lg-2">Potencia (%)</label>
-                            <div class="form-control-wrapper col-xs-5 col-sm-3 col-lg-3">
+                            <div class="form-control-wrapper col-xs-6 col-sm-3 col-lg-3">
                                 <input type="number" min="1" max="100" pattern="\d*" ng-change="onChange()"
                                        class="form-control needsclick" ng-model="settings.maxPinValuePercent">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-xs-5 col-sm-3 col-lg-3">Inicio</label>
-
-                            <div class="form-control-wrapper col-xs-5 col-sm-3 col-lg-3">
+                            <div class="form-control-wrapper col-xs-6 col-sm-3 col-lg-3">
                                 <input type="time" label="Hora inicio"
                                        label-class="col-xs-3 col-sm-2 col-lg-1"
                                        class="needsclick form-control"
@@ -32,7 +31,7 @@
                         <div class="form-group row">
                             <label class="control-label col-xs-5 col-sm-3 col-lg-3">Fin</label>
 
-                            <div class="form-control-wrapper col-xs-5 col-sm-3 col-lg-3">
+                            <div class="form-control-wrapper col-xs-6 col-sm-3 col-lg-3">
                                 <input type="time" label="Hora Fin"
                                        label-class="col-xs-3 col-sm-2 col-lg-1"
                                        class="needsclick form-control"
@@ -53,29 +52,28 @@
                     <div>
                         <div class="form-group row">
                             <label class="control-label col-xs-5 col-sm-3 col-lg-3">Amanecer</label>
-
-                            <div class="form-control-wrapper col-xs-5 col-sm-3 col-lg-3">
+                            <div class="form-control-wrapper col-xs-6 col-sm-3 col-lg-3">
                                 <input type="number" pattern="\d*" ng-change="onChange()"
                                        class="form-control needsclick" ng-model="settings.dawnDuration">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-xs-5 col-sm-3 col-lg-3">Anochecer</label>
-                            <div class="form-control-wrapper col-xs-5 col-sm-3 col-lg-3">
+                            <div class="form-control-wrapper col-xs-6 col-sm-3 col-lg-3">
                                 <input type="number" pattern="\d*" ng-change="onChange()"
                                        class="form-control needsclick" ng-model="settings.sunsetDuration">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-xs-5 col-sm-3 col-lg-3">Luz de luna</label>
-                            <div class="form-control-wrapper col-xs-5 col-sm-3 col-lg-3">
+                            <div class="form-control-wrapper col-xs-6 col-sm-3 col-lg-3">
                                 <input type="number" pattern="\d*" ng-change="onChange()"
                                        class="form-control needsclick" ng-model="settings.moonLightTime">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-xs-5 col-sm-3 col-lg-3">Medida</label>
-                            <div class="form-control-wrapper col-xs-5 col-sm-3 col-lg-3">
+                            <div class="form-control-wrapper col-xs-6 col-sm-3 col-lg-3">
                                 <select ng-model="settings.units"
                                         ng-options="timeMeasureType.value as timeMeasureType.text for timeMeasureType in defaults.timeMeasureTypes"
                                         class="form-control needsclick"
