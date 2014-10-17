@@ -35,7 +35,7 @@ angular.module("app")
             connector.on(type, function (value) {
                 console.log(type, "value", value);
                 $scope.lights.filter(function (light) {
-                    return light === type;
+                    return light.type === type;
                 })[0].value = value;
 
                 $scope.$apply();
