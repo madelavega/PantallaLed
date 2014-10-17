@@ -31,29 +31,26 @@ angular.module("app")
             });
         }
 
-        connector.on("moonLight", function (value) {
-            console.log("moonLight value", value);
-            $scope.lights[0].value = value;
-            $scope.$apply();
+        ["dayLight", "moonLight", "highLight", "redLight"].forEach(function (type) {
+            connector.on(type, function (value) {
+                console.log(type, "value", value);
+                $scope.lights.filter(function (light) {
+                    return light === type;
+                })[0].value = value;
+
+                $scope.$apply();
+            });
         });
-        connector.on("redLight", function (value) {
-            console.log("redLight value", value);
-            $scope.lights[1].value = value;
-            $scope.$apply();
+
+        ["sunset", "dawn"].forEach(function (type) {
+            connector.on(type, function (lightValues) {
+                $scope.lights = keys(lightValues).map(function (el) {
+                    var transform = {};
+                    transform[el] = lightValues[el];
+                    return transform;
+                });
+                $scope.$apply();
+            });
         });
-        connector.on("dayLight", function (value) {
-            console.log("dayLight value", value);
-            $scope.lights[2].value = value;
-            $scope.$apply();
-        });
-        connector.on("highLight", function (value) {
-            console.log("highLight value", value);
-            $scope.lights[3].value = value;
-            $scope.$apply();
-        });
-        connector.on("potencia", function (value) {
-            console.log("Potencia value", value);
-            $scope.potencia = value;
-            $scope.$apply();
-        });
+
     }]);

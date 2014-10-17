@@ -8,6 +8,7 @@ function PantallaLed() {
         setMaxPinValuePercent, initReadEvents, temperatura = 0,
         getSettings, getConfig, isCustomized = false, setSettings,
         readTemperature, isStarting = false, isEnding = false,
+        emitLightValues,
         j5 = require("johnny-five"),
         moment = require('moment-range'),
         port, board;
@@ -85,7 +86,6 @@ function PantallaLed() {
             if ((new moment()).format($AC.dateFormat).match($AC.config.startTime)) {
                 isCustomized = false;
                 if (!isStarting) {
-                    console.log("startTime '", $AC.config.startTime, "'match with actual time!!");
                     isStarting = true;
                     startDay();
                     setTimeout(function () {
@@ -106,14 +106,12 @@ function PantallaLed() {
                 } else {
                     if (!isStarting && !isEnding && !isCustomized) {
                         if (range.contains(new Date())) {
-                            console.log("Time between start", $AC.config.startTime, "and end", $AC.config.finishTime);
                             ["dayLight", "moonLight", "highLight", "redLight"].forEach(function (type) {
                                 if (!environment[type].value) {
                                     environment[type].brightness(environment.maxPinValue);
                                 }
                             });
                         } else {
-                            console.log("Time out of range between start", $AC.config.startTime, "and end", $AC.config.finishTime);
                             ["dayLight", "highLight", "redLight"].forEach(function (type) {
                                 if (environment[type].value) {
                                     environment[type].brightness(0);
@@ -127,55 +125,59 @@ function PantallaLed() {
     }
 
     startDay = function () {
+        emitLightValues("dawnDuration");
+
         //moonlight
-        console.log("Initializing moon light...");
         environment.moonLight.fade(environment.maxPinValue, environment.dawnDuration / 2);
 
         //daylight
         setTimeout(function () {
-            console.log("Initializing day light...");
             environment.dayLight.fade(environment.maxPinValue, environment.dawnDuration - environment.dawnDuration / 6);
         }, environment.dawnDuration / 6);
 
         //highlight
         setTimeout(function () {
-            console.log("Initializing high light...");
             //(setPercent("dayLight"))(1);
             environment.highLight.fade(environment.maxPinValue, environment.dawnDuration - environment.dawnDuration / 4);
         }, environment.dawnDuration / 4);
 
         //red light
         setTimeout(function () {
-            console.log("Initializing red light...");
             environment.redLight.fade(environment.maxPinValue, environment.dawnDuration - environment.dawnDuration / 8);
         }, environment.dawnDuration / 8);
     }
 
     turnOff = function () {
-        console.log("Starting sunset...");
-
+        emitLightValues("sunsetDuration");
         //highLight
-        console.log("Turning off high light...");
         environment.highLight.fadeOut(parseInt(environment.sunsetDuration / 2));
 
         //dayLight
         setTimeout(function () {
-            console.log("Turning off day light...");
             environment.dayLight.fadeOut(parseInt(environment.sunsetDuration - environment.sunsetDuration / 12));
         }, environment.dawnDuration / 12);
 
         //red light
         setTimeout(function () {
-            console.log("Turning off red light...");
             environment.redLight.fadeOut(parseInt(environment.sunsetDuration - environment.sunsetDuration / 8));
         }, environment.dawnDuration / 8);
 
         //moonlight
         setTimeout(function () {
-            console.log("Turning off moonlight");
             environment.moonLight.fadeOut(environment.sunsetDuration);
         }, environment.moonLightTime);
     }
+
+    emitLightValues = function (intervalType) {
+        var that = this, infoIntervalId = null;
+        setTimeout(function () {
+            clearInterval(infoIntervalId);
+        }, environment[intervalType]);
+
+        setInterval(function () {
+            that.emit(intervalType.replace("Duration", ""), getLightValues());
+        }, 5000);
+    };
 
     setPercent = function (lightType) {
         isCustomized = true;
@@ -249,7 +251,7 @@ function PantallaLed() {
 
     getTemperatura = function () {
         return {"temperatura": temperatura};
-    }
+    };
 
     this.init = initialize;
     this.setDayLightPercent = setPercent("dayLight");

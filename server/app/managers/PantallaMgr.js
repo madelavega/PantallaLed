@@ -9,7 +9,7 @@ var util = require('util'),
 function PantallaMgr() {
     "use strict";
 
-    var that = this, onTemperatureChanged;
+    var that = this, onTemperatureChanged, onDawn, onSunset;
     pantallaLed.init(pantallaLedConfig);
 
     PantallaMgr.super_.call(this);
@@ -18,7 +18,17 @@ function PantallaMgr() {
         that.emit("temperatura", value);
     };
 
+    onDawn = function (lightValues) {
+        that.emit("dawn", lightValues);
+    };
+
+    onSunset = function (lightValues) {
+        that.emit("sunset", lightValues);
+    };
+
     pantallaLed.on("temperaturaChanged", onTemperatureChanged);
+    pantallaLed.on("dawn", onDawn);
+    pantallaLed.on("sunset", onSunset);
 
     this.customizeLight = function (data) {
         var result = {} , actions = {
