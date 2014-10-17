@@ -95,7 +95,6 @@ function PantallaLed() {
                 if ((new moment()).format($AC.dateFormat).match($AC.config.finishTime)) {
                     isCustomized = false;
                     if (!isEnding) {
-                        console.log("finishTime '", $AC.config.finishTime, "'match with actual time!!");
                         turnOff();
                         isEnding = true;
                         setTimeout(function () {
@@ -174,6 +173,7 @@ function PantallaLed() {
         }, environment[intervalType]);
 
         setInterval(function () {
+            console.log(intervalType.replace("Duration", ""), getLightValues());
             that.emit(intervalType.replace("Duration", ""), getLightValues());
         }, 5000);
     };

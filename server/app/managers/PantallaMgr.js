@@ -70,7 +70,6 @@ function PantallaMgr() {
             }
         }
 
-        console.log("writting:", pantallaLedConfig);
         fs.writeFile(__dirname + "/../config/pantallaLed.json", JSON.stringify(pantallaLedConfig, null, "\t"), function(err) {
             if(err) {
                 console.log(err);
