@@ -170,12 +170,13 @@ function PantallaLed() {
         var infoIntervalId = null;
         setTimeout(function () {
             clearInterval(infoIntervalId);
+            that.emit(intervalType.replace("Duration", ""), getLightValues());
         }, environment[intervalType]);
 
         infoIntervalId = setInterval(function () {
             console.log(intervalType.replace("Duration", ""), getLightValues());
             that.emit(intervalType.replace("Duration", ""), getLightValues());
-        }, 5000);
+        }, 2000);
     };
 
     setPercent = function (lightType) {
