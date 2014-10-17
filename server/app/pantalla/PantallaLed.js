@@ -3,7 +3,7 @@ var util = require('util'),
     sp = require("serialport");
 
 function PantallaLed() {
-    var environment, initialize, turnOff, startDay, checkControl,
+    var that = this, environment, initialize, turnOff, startDay, checkControl,
         $AC, setup, setPercent, getLightValues, getTemperatura,
         setMaxPinValuePercent, initReadEvents, temperatura = 0,
         getSettings, getConfig, isCustomized = false, setSettings,
@@ -33,7 +33,6 @@ function PantallaLed() {
     };
 
     initialize = function (pantallaLedConfig) {
-        var that = this;
         getConfig(pantallaLedConfig);
         board.on("ready", function () {
             setup();
@@ -73,7 +72,7 @@ function PantallaLed() {
     };
 
     initReadEvents = function (scope) {
-        readTemperature(scope);
+        readTemperature();
     };
 
     checkControl = function () {
@@ -169,7 +168,7 @@ function PantallaLed() {
     }
 
     emitLightValues = function (intervalType) {
-        var that = this, infoIntervalId = null;
+        var infoIntervalId = null;
         setTimeout(function () {
             clearInterval(infoIntervalId);
         }, environment[intervalType]);
@@ -208,7 +207,7 @@ function PantallaLed() {
         });
     };
 
-    readTemperature = function (scope) {
+    readTemperature = function () {
         var pin = $AC.pins.digitals.TEMPERATURE;
         board.firmata = board.io;
         board.firmata.sendOneWireConfig(pin, true);
@@ -239,7 +238,7 @@ function PantallaLed() {
                     }
                     var raw = (data[1] << 8) | data[0];
                     temperatura = raw / 16.0;
-                    scope.emit("temperaturaChanged", temperatura);
+                    that.emit("temperaturaChanged", temperatura);
                 });
             };
             // read the temperature now
