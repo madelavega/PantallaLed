@@ -172,7 +172,7 @@ function PantallaLed() {
             clearInterval(infoIntervalId);
         }, environment[intervalType]);
 
-        setInterval(function () {
+        infoIntervalId = setInterval(function () {
             console.log(intervalType.replace("Duration", ""), getLightValues());
             that.emit(intervalType.replace("Duration", ""), getLightValues());
         }, 5000);
