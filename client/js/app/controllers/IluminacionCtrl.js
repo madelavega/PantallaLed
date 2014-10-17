@@ -45,7 +45,7 @@ angular.module("app")
         ["sunset", "dawn"].forEach(function (type) {
             connector.on(type, function (lightValues) {
                 $scope.lights.forEach(function (light) {
-                    light.value = lightValues[type];
+                    light.value = lightValues[light];
                 });
                 $scope.$apply();
             });
