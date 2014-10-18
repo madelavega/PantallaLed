@@ -58,7 +58,7 @@ connector
 
                 var evtHandler, matches;
                 matches = suscriptors.filter(function (subscriptor) {
-                    return Object.keys(subscriptor)[0] === event && subscriptor[keys(subscriptor)[0]].toString() === handler.toString();
+                    return Object.keys(subscriptor)[0] === event && subscriptor[Object.keys(subscriptor)[0]].toString() === handler.toString();
                 });
 
                 if (!matches.length) {
