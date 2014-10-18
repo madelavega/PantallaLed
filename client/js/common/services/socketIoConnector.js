@@ -65,6 +65,8 @@ connector
                     evtHandler = {};
                     evtHandler[event] = handler;
                     suscriptors.push(evtHandler);
+                } else {
+                    matches[0][event] = handler;
                 }
             },
             isReady    : ready
