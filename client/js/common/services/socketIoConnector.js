@@ -55,11 +55,19 @@ connector
                 connection.send(angular.toJson(message));
             },
             on         : function (event, handler) {
-                var evtHandler = {};
-                evtHandler[event] = handler;
-                suscriptors.push(evtHandler);
+
+                var evtHandler, matches;
+                matches = suscriptors.filter(function (subscriptor) {
+                    return keys(subscriptor)[0] === event && subscriptor[keys(subscriptor)[0]].toString() === handler.toString()
+                });
+
+                if (!matches.length) {
+                    evtHandler = {};
+                    evtHandler[event] = handler;
+                    suscriptors.push(evtHandler);
+                }
             },
-            isReady : ready
+            isReady    : ready
 
         };
     });
