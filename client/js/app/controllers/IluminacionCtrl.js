@@ -51,4 +51,9 @@ angular.module("app")
             });
         });
 
+        connector.on("potencia", function (value) {
+            $scope.potencia = value;
+            $scope.$apply();
+        });
+
     }]);
