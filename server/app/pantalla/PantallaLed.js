@@ -232,13 +232,19 @@ function PantallaLed() {
                 board.firmata.sendOneWireReset(pin);
                 // tell the sensor we want the result and read it from the scratchpad
                 board.firmata.sendOneWireWriteAndRead(pin, device, 0xBE, 9, function (error, data) {
+                    var temperaturaTmp;
                     if (error) {
                         console.error(error);
                         return;
                     }
                     var raw = (data[1] << 8) | data[0];
-                    temperatura = raw / 16.0;
-                    that.emit("temperaturaChanged", temperatura);
+                    temperaturaTmp = raw / 16.0;
+                    temperaturaTmp = (temperaturaTmp + "").split(".");
+                    temperaturaTmp = temperaturaTmp.length > 1 ? [temperaturaTmp[0], ".", temperaturaTmp[1].substring(0,2)].join("") : temperaturaTmp[0];
+                    if(temperaturaTmp !== temperatura) {
+                        temperatura = temperaturaTmp;
+                        that.emit("temperaturaChanged", temperatura);
+                    }
                 });
             };
             // read the temperature now
