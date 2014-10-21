@@ -250,7 +250,7 @@ function PantallaLed() {
             // read the temperature now
             reading();
             // and every 1 second
-            setInterval(reading, 10000);
+            setInterval(reading, 5000);
         });
     };
 
