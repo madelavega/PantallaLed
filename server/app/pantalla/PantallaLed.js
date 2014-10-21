@@ -227,7 +227,7 @@ function PantallaLed() {
                 // a 1-wire select is done by ConfigurableFirmata
                 board.firmata.sendOneWireWrite(pin, device, 0x44);
                 // the delay gives the sensor time to do the calculation
-                board.firmata.sendOneWireDelay(pin, 1000);
+                board.firmata.sendOneWireDelay(pin, 3000);
                 // start transmission
                 board.firmata.sendOneWireReset(pin);
                 // tell the sensor we want the result and read it from the scratchpad
