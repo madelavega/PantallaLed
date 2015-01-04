@@ -9,10 +9,10 @@ angular.module("app").config(["$routeProvider",
                 templateUrl: "partials/ajustes.html",
                 controller : "AjustesCtrl"
             }).
-            when("/temperatura", {
-                templateUrl: "partials/temperatura.html",
-                controller : "TemperaturaCtrl"
-            }).
+//            when("/temperatura", {
+//                templateUrl: "partials/temperatura.html",
+//                controller : "TemperaturaCtrl"
+//            }).
             otherwise({
                 redirectTo: "/ajustes"
             });

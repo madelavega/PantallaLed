@@ -1,5 +1,6 @@
 var util = require('util'),
     EventEmitter = require('events').EventEmitter,
+    //logger = require('./Logger'),
     sp = require("serialport");
 
 function PantallaLed() {
@@ -36,14 +37,14 @@ function PantallaLed() {
         getConfig(pantallaLedConfig);
         board.on("ready", function () {
             setup();
-            initReadEvents(that);
+            //initReadEvents(that);
             checkControl();
         });
     };
 
     getConfig = function (pantallaLedConfig) {
         $AC = pantallaLedConfig;
-    }
+    };
 
     setup = function () {
         var unit;
@@ -71,7 +72,7 @@ function PantallaLed() {
         setup();
     };
 
-    initReadEvents = function (scope) {
+    readTemperature = function (scope) {
         readTemperature();
     };
 
@@ -214,7 +215,7 @@ function PantallaLed() {
         board.firmata.sendOneWireSearch(pin, function (error, devices) {
             var device, reading;
             if (error) {
-                console.error(error);
+                logger.error("Error reading temperature: ", error);
                 return;
             }
 
@@ -232,17 +233,15 @@ function PantallaLed() {
                 board.firmata.sendOneWireReset(pin);
                 // tell the sensor we want the result and read it from the scratchpad
                 board.firmata.sendOneWireWriteAndRead(pin, device, 0xBE, 9, function (error, data) {
-                    var temperaturaTmp;
+                    var tempTmp, raw;
                     if (error) {
                         console.error(error);
                         return;
                     }
-                    var raw = (data[1] << 8) | data[0];
-                    temperaturaTmp = raw / 16.0;
-                    temperaturaTmp = (temperaturaTmp + "").split(".");
-                    temperaturaTmp = temperaturaTmp.length > 1 ? [temperaturaTmp[0], ".", temperaturaTmp[1].substring(0,2)].join("") : temperaturaTmp[0];
-                    if(temperaturaTmp !== temperatura) {
-                        temperatura = temperaturaTmp;
+                    raw = (data[1] << 8) | data[0];
+                    tempTmp = (raw / 16.0).toFixed(2);
+                    if(tempTmp !== temperatura) {
+                        temperatura = tempTmp;
                         that.emit("temperaturaChanged", temperatura);
                     }
                 });
