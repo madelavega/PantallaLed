@@ -14,14 +14,14 @@ function PantallaLed() {
         moment = require('moment-range'),
         port, board;
 
-    port = new sp.SerialPort("/dev/ttyACM0", {
-        baudrate: 57600, // No other boud rate works
-        buffersize: 128 // Firmata uses 1
-    });
+//    port = new sp.SerialPort("/dev/ttyACM0", {
+//        baudrate: 57600, // No other boud rate works
+//        buffersize: 128 // Firmata uses 1
+//    });
 
-    board = new j5.Board({
+    board = new j5.Board(/*{
         port: port
-    });
+    }*/);
 
     environment = {
         moonLight: null,
