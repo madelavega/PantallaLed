@@ -1,20 +1,20 @@
 {
 	"pins": {
 		"digitals": {
-			"DAY_LIGHT": 5,
-			"MOON_LIGHT": 4,
-			"RED_LIGHT": 3,
-			"HIGH_LIGHT": 2,
+			"DAY_LIGHT": 3,
+			"MOON_LIGHT": 6,
+			"RED_LIGHT": 10,
+			"HIGH_LIGHT": 11,
 			"TEMPERATURE": 24
 		},
 		"analogs": {}
 	},
 	"dateFormat": "HH:mm",
 	"config": {
-		"maxPinValuePercent": 90,
+		"maxPinValuePercent": 100,
 		"startTime": "19:38",
 		"finishTime": "19:44",
-		"dawnDuration": 11,
+		"dawnDuration": 3,
 		"sunsetDuration": 1,
 		"moonLightTime": 2,
 		"units": "m"
